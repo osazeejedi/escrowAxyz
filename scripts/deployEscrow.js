@@ -7,13 +7,12 @@
 const hre = require("hardhat");
 
 async function main() {
-
-  const price = hre.ethers.utils.parseEther("2");
+  const price = hre.ethers.utils.parseEther("1");
   const buyer = "0x9ffBe81CFe722E2F696f6F152413635Fcdb85A3c"
-  const seller = "0x9ffBe81CFe722E2F696f6F152413635Fcdb85A3c"
+  const seller = "0x0F188eCe555d848936b968DD0911200F79CE44F6"
 
   const Escrow = await hre.ethers.getContractFactory("EscrowService");
-  const escrow = await Escrow.deploy(buyer, seller, { value: (price) });
+  const escrow = await Escrow.deploy(buyer, seller, { value: price });
 
   await escrow.deployed();
 
