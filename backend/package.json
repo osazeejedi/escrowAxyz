@@ -1,0 +1,20 @@
+{
+  "name": "Escrow-Backend",
+  "version": "1.0.0",
+  "description": "Escrow Api service",
+  "main": "index.js",
+  "repository": "https://github.com/osazeejedi/escrowAxyz.git",
+  "author": "Eric-Vondee",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "ethers": "^5.7.2",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20"
+  }
+}
