@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 /// @dev Implements a single role access control contract.
 //import "./AccessControl.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
-
+//deployed address:0xfC8492D836C6981665c64dBA3570De91fED2dE6A
 
 /// @title EscrowService Contract
 /// @author Osazee jedidiah Oghagbon (for Axyz)
@@ -43,11 +43,15 @@ contract EscrowService is AccessControl { //Ownable,
         buyer = _buyer_address;
         seller= _seller_address;
         price = _price*10**18;
-        fee = 1*10**18;
         
         _setupRole(AGENT_ROLE, agent);
         _setupRole(BUYER_ROLE, buyer);
         _setupRole(SELLER_ROLE, seller);
+    }
+
+    function setfee (uint256 _fee)public onlyRole(SELLER_ROLE)returns(uint){
+        fee = _fee;
+        return fee;
     }
             
     /// @notice This should be the first stage of the negociation! //address payable _seller, uint _price
