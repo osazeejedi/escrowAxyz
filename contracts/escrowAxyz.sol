@@ -4,7 +4,9 @@ pragma solidity ^0.8.0;
 /// @dev Implements a single role access control contract.
 //import "./AccessControl.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
+import "./SBC.sol";
 //deployed address:0xfC8492D836C6981665c64dBA3570De91fED2dE6A
+// deployed address: 0x96BBbF9779707ead27E1294Cb64001EF5F736B09 polygon (mumbai)
 
 /// @title EscrowService Contract
 /// @author Osazee jedidiah Oghagbon (for Axyz)
@@ -32,9 +34,10 @@ contract EscrowService is AccessControl { //Ownable,
 
     /// @dev State varible to track escrow stage
     uint32 public status;
-    
+    IERC20 token;
+    mapping(address => uint) SBCbalance;
     /// @dev Create the community role, with `root` as a member.
-    constructor(address payable _buyer_address, address payable _seller_address, uint32 _price) {
+    constructor(address payable _buyer_address, address payable _seller_address, uint32 _price, address SBCtoken) {
         
         status = 0 ;
         vault = address(this);
@@ -43,28 +46,29 @@ contract EscrowService is AccessControl { //Ownable,
         buyer = _buyer_address;
         seller= _seller_address;
         price = _price*10**18;
+        token = IERC20 (SBCtoken);
         
         _setupRole(AGENT_ROLE, agent);
         _setupRole(BUYER_ROLE, buyer);
         _setupRole(SELLER_ROLE, seller);
     }
 
-    function setfee (uint256 _fee)public onlyRole(SELLER_ROLE)returns(uint){
+    function setfee (uint256 _fee)public onlyRole(BUYER_ROLE)returns(uint){
         fee = _fee;
         return fee;
     }
             
     /// @notice This should be the first stage of the negociation! //address payable _seller, uint _price
-    function BuyerSendPayment() external payable onlyRole(BUYER_ROLE) { 
-        require (msg.value > fee, "Escrow Agent tax of 1 Ether must be covered!");
+    function BuyerSendPayment(uint amount) external payable onlyRole(BUYER_ROLE) { 
+        require (amount > fee, "Escrow Agent tax of 1 Ether must be covered!");
         //require (_seller == seller, "Buyer must confirm the seller address!");
-        require (msg.value >= price, "Buyer should pay at least the minimal price for the products or services.");
+        require (amount >= price, "please pay at least the minimal price for the products");
         require (status == 0 , "This should be the first stage of the negociation!");
-        status = 1 ; 
-        payable(agent).transfer(fee);
-        uint256 new_price = price - fee;
-        payable(vault).transfer(new_price); 
-
+        token.approve(vault, amount);
+        IERC20(token).transferFrom(buyer, agent, fee);
+        uint256 new_price = amount - fee;
+        IERC20(token).transferFrom(buyer,vault, new_price);
+        status = 1 ;
     }
 
     /// @notice This should be the second stage of the negociation!"
@@ -76,8 +80,8 @@ contract EscrowService is AccessControl { //Ownable,
     /// @notice Only the buyer can confirm the deliver.
     function BuyerConfirmDeliver () payable public onlyRole(BUYER_ROLE) {
         require (status == 2 , "This should be the third stage of the negociation!");
-        status = 5 ;
-        seller.transfer(vault.balance);
+        status = 3 ;
+        IERC20(token).transfer(seller, vault.balance);
     }
 
     /// @notice Only the buyer can deny the deliver.
@@ -88,22 +92,21 @@ contract EscrowService is AccessControl { //Ownable,
   
     /// @notice If conditions met: escrow agent releases to seller.
     function AgentConfirmTransaction () public onlyRole(AGENT_ROLE) {
-        require (status == 3 , "This should be the fourth stage of the negociation!");
+        require (status == 4 , "This should be the fourth stage of the negociation!");
         status = 5 ;
-        agent.transfer(vault.balance);
+        IERC20(token).transfer(seller,vault.balance);
     }
 
     /// @notice If conditions does not met: escrow agent revert to buyer.
     function AgentCancelTransaction () onlyRole(AGENT_ROLE) public {
-        require (status == 3 , "This should be the fourth stage of the negociation!");
+        require (status == 4 , "This should be the fourth stage of the negociation!");
         status = 5 ;
-        buyer.transfer(vault.balance); 
+        IERC20(token).transfer(buyer,vault.balance); 
     }
 
     /// @notice Only the agent can check vault balance.
-    function VaultBalance () public onlyRole(AGENT_ROLE) returns(uint256){
+    function VaultBalance () public view returns(uint256){
         require (status >=1 , "Transaction not started yet!");
-        status = 5 ;
         return vault.balance;
     }
 
