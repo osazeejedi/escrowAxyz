@@ -1,437 +1,168 @@
-exports.ABI =[
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "uint32",
-				"name": "productId",
-				"type": "uint32"
-			}
-		],
-		"name": "TransferOwnership",
-		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "id",
-				"type": "string"
-			},
-			{
-				"internalType": "address",
-				"name": "_pAdd",
-				"type": "address"
-			},
-			{
-				"internalType": "string",
-				"name": "_pType",
-				"type": "string"
-			}
-		],
-		"name": "addParticipant",
-		"outputs": [
-			{
-				"internalType": "uint32",
-				"name": "",
-				"type": "uint32"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint32",
-				"name": "_ownerId",
-				"type": "uint32"
-			},
-			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_prodIdentity",
-				"type": "string"
-			},
-			{
-				"internalType": "uint32",
-				"name": "_productCost",
-				"type": "uint32"
-			}
-		],
-		"name": "addProduct",
-		"outputs": [
-			{
-				"internalType": "uint32",
-				"name": "",
-				"type": "uint32"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint32",
-				"name": "_uid",
-				"type": "uint32"
-			},
-			{
-				"internalType": "string",
-				"name": "_uname",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_id",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_utype",
-				"type": "string"
-			}
-		],
-		"name": "authenticateParticipant",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint32",
-				"name": "_regId",
-				"type": "uint32"
-			}
-		],
-		"name": "getOwnership",
-		"outputs": [
-			{
-				"internalType": "uint32",
-				"name": "",
-				"type": "uint32"
-			},
-			{
-				"internalType": "uint32",
-				"name": "",
-				"type": "uint32"
-			},
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			},
-			{
-				"internalType": "uint32",
-				"name": "",
-				"type": "uint32"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint32",
-				"name": "_participant_id",
-				"type": "uint32"
-			}
-		],
-		"name": "getParticipant",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			},
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			},
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint32",
-				"name": "_productId",
-				"type": "uint32"
-			}
-		],
-		"name": "getProduct",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			},
-			{
-				"internalType": "uint32",
-				"name": "",
-				"type": "uint32"
-			},
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			},
-			{
-				"internalType": "uint32",
-				"name": "",
-				"type": "uint32"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint32",
-				"name": "_prodId",
-				"type": "uint32"
-			}
-		],
-		"name": "getProvenance",
-		"outputs": [
-			{
-				"internalType": "uint32[]",
-				"name": "",
-				"type": "uint32[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint32",
-				"name": "_user1Id",
-				"type": "uint32"
-			},
-			{
-				"internalType": "uint32",
-				"name": "_user2Id",
-				"type": "uint32"
-			},
-			{
-				"internalType": "uint32",
-				"name": "_prodId",
-				"type": "uint32"
-			}
-		],
-		"name": "newOwner",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "owner_id",
-		"outputs": [
-			{
-				"internalType": "uint32",
-				"name": "",
-				"type": "uint32"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint32",
-				"name": "",
-				"type": "uint32"
-			}
-		],
-		"name": "ownerships",
-		"outputs": [
-			{
-				"internalType": "uint32",
-				"name": "productId",
-				"type": "uint32"
-			},
-			{
-				"internalType": "uint32",
-				"name": "ownerId",
-				"type": "uint32"
-			},
-			{
-				"internalType": "uint32",
-				"name": "trxTimeStamp",
-				"type": "uint32"
-			},
-			{
-				"internalType": "address",
-				"name": "productOwner",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "participant_id",
-		"outputs": [
-			{
-				"internalType": "uint32",
-				"name": "",
-				"type": "uint32"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint32",
-				"name": "",
-				"type": "uint32"
-			}
-		],
-		"name": "participants",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "userName",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "id",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "participantType",
-				"type": "string"
-			},
-			{
-				"internalType": "address",
-				"name": "participantAddress",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint32",
-				"name": "",
-				"type": "uint32"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "productTrack",
-		"outputs": [
-			{
-				"internalType": "uint32",
-				"name": "",
-				"type": "uint32"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "product_id",
-		"outputs": [
-			{
-				"internalType": "uint32",
-				"name": "",
-				"type": "uint32"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint32",
-				"name": "",
-				"type": "uint32"
-			}
-		],
-		"name": "products",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "modelNumber",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "prodIdentity",
-				"type": "string"
-			},
-			{
-				"internalType": "address",
-				"name": "productOwner",
-				"type": "address"
-			},
-			{
-				"internalType": "uint32",
-				"name": "cost",
-				"type": "uint32"
-			},
-			{
-				"internalType": "uint32",
-				"name": "mfgTimeStamp",
-				"type": "uint32"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	}
-]
+"use_strict";
+const express = require('express');
+const router = express.Router();
+const {ethers, BigNumber} = require('ethers');
+const {RPC_URL, PRIVATE_KEY, ASSET_CONTRACT_ADDRESS} = require('../../config/index');
+const { ASSET_TRANSFER_ABI } = require('./assetTransferABI');
+
+const provider = new ethers.providers.JsonRpcProvider(RPC_URL)
+
+router.post("/participant/create", async(req,res,next) => {
+    try{
+        const {name, id, pAdd, pType} = req.body
+        let walletKey = new ethers.Wallet(PRIVATE_KEY);
+        let wallet = walletKey.connect(provider);
+        const assetTransferContract = new ethers.Contract(ASSET_CONTRACT_ADDRESS, ASSET_TRANSFER_ABI, wallet)
+        const tx = await assetTransferContract.addParticipant(name, id, pAdd, pType, {
+            gasLimit: BigNumber.from("300000"),
+            gasPrice: BigNumber.from("170000000000"),
+            nonce: await wallet.getTransactionCount(),
+        })
+        console.log("tx", tx)
+        const receipt = await tx.wait()
+        res.status(200).json({
+            statusCode:200, 
+            message:"success", 
+            data: receipt.transactionHash
+        })
+    }
+    catch(e){
+
+        res.status(500).json({statusCode:500, message:e.message})
+    }
+})
+
+router.get("/participant", async(req,res,next) => {
+    try{
+        const {id} = req.query
+        const assetTransferContract = new ethers.Contract(ASSET_CONTRACT_ADDRESS, ASSET_TRANSFER_ABI, provider)
+        const getParticipants = await assetTransferContract.getParticipant(id)
+        res.status(200).json({
+            statusCode:200, 
+            message:"success", 
+            data: getParticipants
+        })
+    }
+    catch(e){
+        res.status(500).json({statusCode:500, message:e.message})
+    }
+})
+
+
+router.post("/products", async(req,res,next) => {
+    try{
+        const {ownerId, name, prodIdentity, productCost} = req.body
+        let walletKey = new ethers.Wallet(PRIVATE_KEY);
+        let wallet = walletKey.connect(provider);
+        const assetTransferContract = new ethers.Contract(ASSET_CONTRACT_ADDRESS, ASSET_TRANSFER_ABI, wallet)
+        const tx = await assetTransferContract.addProduct(ownerId, name, prodIdentity, productCost, {
+            gasLimit: BigNumber.from("300000"),
+            gasPrice: BigNumber.from("170000000000"),
+            nonce: await wallet.getTransactionCount(),
+        })
+        console.log("tx", tx)
+        const receipt = await tx.wait()
+        res.status(200).json({
+            statusCode:200, 
+            message:"success", 
+            data: receipt.transactionHash
+        })
+    }
+    catch(e){
+        res.status(500).json({statusCode:500, message:e.message})
+    }
+})
+
+
+router.get("/products", async(req,res,next) => {
+    try{
+        const {id} = req.query
+        const assetTransferContract = new ethers.Contract(ASSET_CONTRACT_ADDRESS, ASSET_TRANSFER_ABI, provider)
+        const product = await assetTransferContract.getProduct(id)
+        res.status(200).json({
+            statusCode:200, 
+            message:"success", 
+            data: product
+        })
+    }
+    catch(e){
+        res.status(500).json({statusCode:500, message:e.message})
+    }
+})
+
+
+router.post("/owner", async(req,res,next) => {
+    try{
+        const {user1Id, user2Id, prodId} = req.body
+        let walletKey = new ethers.Wallet(PRIVATE_KEY);
+        let wallet = walletKey.connect(provider);
+        const assetTransferContract = new ethers.Contract(ASSET_CONTRACT_ADDRESS, ASSET_TRANSFER_ABI, wallet)
+        const tx = await assetTransferContract.newOwner(user1Id, user2Id, prodId, {
+            gasLimit: BigNumber.from("300000"),
+            gasPrice: BigNumber.from("170000000000"),
+            nonce: await wallet.getTransactionCount(),
+        })
+        console.log("tx", tx)
+        const receipt = await tx.wait()
+        res.status(200).json({
+            statusCode:200, 
+            message:"success", 
+            data: receipt.transactionHash
+        })
+    }
+    catch(e){
+        res.status(500).json({statusCode:500, message:e.message})
+    }
+})
+
+
+router.get("/provenance", async(req,res,next) => {
+    try{
+        const {prodId} = req.query
+        const assetTransferContract = new ethers.Contract(ASSET_CONTRACT_ADDRESS, ASSET_TRANSFER_ABI, provider)
+        const getProvenance = await assetTransferContract.getProvenance(prodId)
+        res.status(200).json({
+            statusCode:200, 
+            message:"success", 
+            data: getProvenance
+        })
+    }
+    catch(e){
+        res.status(500).json({statusCode:500, message:e.message})
+    }
+})
+
+router.get("/ownership", async(req,res,next) => {
+    try{
+        const {regId} = req.query
+        const assetTransferContract = new ethers.Contract(ASSET_CONTRACT_ADDRESS, ASSET_TRANSFER_ABI, provider)
+        const getOwnership = await assetTransferContract.getOwnership(regId)
+        res.status(200).json({
+            statusCode:200, 
+            message:"success", 
+            data: getOwnership
+        })
+    }
+    catch(e){
+        res.status(500).json({statusCode:500, message:e.message})
+    }
+})
+
+router.get("/participant/authenticate", async(req,res,next) => {
+    try{
+        const {uid, uname,id, utype} = req.query
+        const assetTransferContract = new ethers.Contract(ASSET_CONTRACT_ADDRESS, ASSET_TRANSFER_ABI, provider)
+        const participant = await assetTransferContract.authenticateParticipant(uid, uname, id, utype)
+        res.status(200).json({
+            statusCode:200, 
+            message:"success", 
+            data: participant
+        })
+    }
+    catch(e){
+        res.status(500).json({statusCode:500, message:e.message})
+    }
+})
+
+
+module.exports = router
